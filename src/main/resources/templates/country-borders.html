@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Country Borders">
+    <meta name="author" content="j-sce">
+    <title>Rate Ice Cream</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}</style>
+</head>
+<body class="w3-light-grey">
+<h5>Country Borders</h5>
+
+<form action="/country-borders" th:object="${request}" method="post">
+    <label for="countryCode">Enter Country Code (e.g., "LV"): </label>
+    <input type="text" id="countryCode" name="countryCode" required>
+    <button type="submit">Get Borders</button>
+</form>
+
+<div th:if="${borders != null}">
+    <h6><b>Country Borders</b></h6>
+    <p th:each="border : ${borders}" th:text="${border}"></p>
+</div>
+
+<div th:if="${errors != null}">
+    <div th:each="error : ${errors}">
+        <p th:text="'Error:' + ${error.field} + ' ' + ${error.message}"/>
+    </div>
+</div>
+<form action="/" method="get">
+    <input class="w3-button w3-dark-grey" type="submit" value="Go to main page"  name="Submit" />
+</form>
+</body>
+</html>
